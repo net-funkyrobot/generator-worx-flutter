@@ -42,11 +42,23 @@ module.exports = class extends Generator {
             .join('');
         this.log(`App name pascal case: ${this.appNamePascal}`);
 
+        this.firebaseProject = `${this.answers.orgIdentifier
+            .split('.')
+            .join('-')}-${this.packageName}`;
+        this.log(
+            `Firebase / Google Cloud project identifier: ${this.firebaseProject}`
+        );
+
+        this.firebaseAppId = `${this.answers.orgIdentifier}.${this.packageName}`;
+        this.log(`Firebase app ID: ${this.firebaseAppId}`);
+
         this.context = {
             packageName: this.packageName,
             appNamePascal: this.appNamePascal,
             productName: this.answers.productName,
             productDescription: this.answers.productDescription,
+            firebaseProject: this.firebaseProject,
+            firebaseAppId: this.firebaseAppId,
         };
 
         // Set destination root to create project dir with the new app's name
