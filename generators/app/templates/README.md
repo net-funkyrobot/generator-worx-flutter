@@ -33,15 +33,6 @@ platform :ios, '11.0'
 flutter pub get
 ```
 
-### Create iOS and Android apps in Firebase console
-
-Use either the Firebase CLI or Firebase Console to create both an iOS and Android app with the following app name and app ID:
-
-```
-<%= packageName %>
-<%= firebaseAppId %>
-```
-
 ### Use Flutterfire CLI to configure the Flutter app to connect to your Firebase project
 
 Install both the Firebase CLI if you haven't already and log-in:
@@ -62,6 +53,8 @@ Finally run the following `flutterfire` command to configure Flutter to connect 
 ```
 flutterfire configure -p <%= firebaseProject %> -a <%= firebaseAppId %> -i <%= firebaseAppId %> --platforms ios,android
 ```
+
+After this command has finished running don't forget to commit its outputs!
 
 ### Build generated files for the first time
 

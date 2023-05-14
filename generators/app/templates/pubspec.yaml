@@ -39,7 +39,7 @@ dependencies:
     flutter_loggy: ^2.0.2
     freezed_annotation:
     google_sign_in: ^6.1.0
-    intl: ^0.18.1
+    intl: ^0.17.0
     json_annotation:
     sign_in_with_apple: ^4.3.0
 

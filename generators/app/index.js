@@ -36,6 +36,10 @@ module.exports = class extends Generator {
             .concat('flutter');
         this.log(`Package name: ${this.packageName}`);
 
+        this.noSuffixPackageName = this.answers.productName
+            .toLowerCase()
+            .replace(/ /g, '');
+
         this.appNamePascal = this.answers.productName
             .split(' ')
             .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
@@ -44,7 +48,7 @@ module.exports = class extends Generator {
 
         this.firebaseProject = `${this.answers.orgIdentifier
             .split('.')
-            .join('-')}-${this.packageName}`;
+            .join('-')}-${this.noSuffixPackageName}`;
         this.log(
             `Firebase / Google Cloud project identifier: ${this.firebaseProject}`
         );
@@ -59,6 +63,7 @@ module.exports = class extends Generator {
             productDescription: this.answers.productDescription,
             firebaseProject: this.firebaseProject,
             firebaseAppId: this.firebaseAppId,
+            noSuffixPackageName: this.noSuffixPackageName,
         };
 
         // Set destination root to create project dir with the new app's name
