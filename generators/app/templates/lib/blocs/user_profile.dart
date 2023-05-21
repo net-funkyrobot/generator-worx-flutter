@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loggy/loggy.dart';
 
 import 'package:<%= packageName %>/models/models.dart';
-import 'package:<%= packageName %>/services/firestore_converters.dart';
 
 class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState>
     with UiLoggy {
@@ -20,13 +19,9 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState>
     fsRef = FirebaseFirestore.instanceFor(app: app)
         .doc("users/${user.uid}/")
         .withConverter<UserProfileState>(
-      fromFirestore: (snapshot, _) {
-        return UserProfileState.fromJson(convertFromDoc(snapshot.data()!));
-      },
-      toFirestore: (UserProfileState state, _) {
-        return convertToDoc(state.toJson());
-      },
-    );
+          fromFirestore: UserProfileState.fromFirestore,
+          toFirestore: UserProfileState.toFirestore,
+        );
 
     on<UserProfileEventInitialize>((event, emit) async {
       /// State is initially blank and loading
